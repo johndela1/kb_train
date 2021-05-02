@@ -7,7 +7,7 @@ from datetime import datetime as dt
 
 weight_kg = 12
 
-lifts = ('swing', 'long_cycle', 'snatch')
+lifts = ('swing', 'lswing', 'rswing', 'longcycle', 'llongcycle', 'rlongcycle', 'snatch', 'lsnatch', 'rsnatch', 'jerk', 'ljerk', 'rjerk')
 
 try:
     lift = sys.argv[1]
