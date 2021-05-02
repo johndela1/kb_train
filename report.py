@@ -5,9 +5,9 @@ import sys
 from datetime import datetime as dt
 
 try:
-  if '-h' in sys.argv[1]:
-      sys.stderr.write(f'usage: {sys.argv[0]} <db name>\n')
-      exit(1)
+    if "-h" in sys.argv[1]:
+        sys.stderr.write(f"usage: {sys.argv[0]} <db name>\n")
+        exit(1)
 except IndexError:
     pass
 
@@ -16,8 +16,8 @@ buf = []
 subsequent = False
 
 for line in fileinput.input():
-    ts, lift, count, weight = line.strip().split('|')
-    if subsequent and count == '1':
+    ts, lift, count, weight = line.strip().split("|")
+    if subsequent and count == "1":
         events.append(buf)
         buf = []
     buf.append((ts, lift, count, weight))
@@ -26,9 +26,9 @@ for line in fileinput.input():
 
 events.append(buf)
 
-print('start lift count duration rpm weight')
+print("start lift count duration rpm weight")
 for e in events:
-    start_time, _, _, _= e[0]
+    start_time, _, _, _ = e[0]
     finish_time, lift, count, weight = e[-1]
     duration = dt.fromisoformat(finish_time) - dt.fromisoformat(start_time)
     try:
@@ -37,7 +37,7 @@ for e in events:
             lift,
             count,
             duration,
-            int(int(count)/duration.seconds*60),
+            int(int(count) / duration.seconds * 60),
             weight,
         )
     except ZeroDivisionError:
