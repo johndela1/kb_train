@@ -1,8 +1,9 @@
 duration=$1
 lift=$2
+db=${3:-db.txt}
 
-if [ $# -ne 2 ]; then
-  echo "usage: $0 <duration> <lift name>"
+if [ $# -lt 2 ]; then
+  echo "usage: $0 <duration> <lift name> [db name]"
   exit 1
 fi
 
