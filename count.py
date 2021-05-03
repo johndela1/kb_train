@@ -11,9 +11,9 @@ lifts = (
     "swing",
     "lswing",
     "rswing",
-    "longcycle",
-    "llongcycle",
-    "rlongcycle",
+    "lc",
+    "llc",
+    "rlc",
     "snatch",
     "lsnatch",
     "rsnatch",
@@ -48,7 +48,7 @@ with open("/dev/stdin", "rb", buffering=0) as stdin:
         if decay:
             decay -= 1
             continue
-        if abs(v) > 12e6:
+        if abs(v) > 1e8:
             count += 1
             decay = SAMPLERATE
 
