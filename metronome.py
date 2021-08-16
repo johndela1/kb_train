@@ -27,10 +27,9 @@ def tone(hz):
 def parse(argv):
     try:
         lift = argv[1]
-        duration = timedelta(minutes=int(argv[2]))
-    except (IndexError, ValueError):
+    except IndexError:
         sys.stderr.write(
-            f"usage: {sys.argv[0]} <lift [{' '.join(lifts)}]> <duration in minutes>\n"
+            f"usage: {sys.argv[0]} <lift [{' '.join(lifts)}]>\n"
         )
         exit(1)
 
@@ -38,7 +37,7 @@ def parse(argv):
         sys.stderr.write(f"lift not in {list(lifts.keys())}\n")
         exit(2)
 
-    return lift, duration
+    return lift
 
 
 def round_up_to_even(x):
@@ -46,7 +45,8 @@ def round_up_to_even(x):
 
 
 def main(argv):
-    lift, duration = parse(argv)
+    lift = parse(argv)
+    duration = timedelta(minutes=DURATION_MIN)
     rpm = lifts[lift]
     t1 = dt.now()
     period_sec = 60 / rpm
